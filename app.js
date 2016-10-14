@@ -5,9 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var chalk = require('chalk');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/index.route');
+var users = require('./routes/users.route');
 
 var app = express();
 
@@ -27,11 +28,7 @@ mongoose.connect('mongodb://localhost/mean');
 
 app.use('/', routes);
 app.use('/users', users);
-
-// app.use(function(req,res,next){
-//     req.db = db;
-//     next();
-// });
+app.use('/app', express.static(__dirname + '/app'));
 
 
 // catch 404 and forward to error handler
