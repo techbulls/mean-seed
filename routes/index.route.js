@@ -1,13 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-//
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-//
-// module.exports = router;
-
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
@@ -29,7 +19,7 @@ router.post('/register', function(req, res) {
         }
 
         passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
+            res.redirect('/app');
         });
     });
 });
@@ -39,7 +29,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
+    res.redirect('/app');
 });
 
 router.get('/logout', function(req, res) {
